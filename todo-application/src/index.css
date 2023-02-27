@@ -1,0 +1,5 @@
+.bgImg{
+  background-image: url("./Assets/plus.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
