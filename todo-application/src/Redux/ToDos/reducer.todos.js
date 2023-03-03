@@ -69,7 +69,7 @@ const todosReducer = (state = initialState, action) => {
       return state.filter((todo) => !todo.completed);
 
     default:
-      break;
+      return state;
   }
 };
 
