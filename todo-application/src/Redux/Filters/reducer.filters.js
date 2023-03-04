@@ -1,5 +1,6 @@
 import { COLOR_CHANGED, STATUS_CHANGED } from "./actionTypes.filters";
-import initialState from "./initialState.filters";
+import { initialState } from './initialState.filters';
+
 
 const filtersReducer = (state = initialState, action) => {
   switch (action.type) {
