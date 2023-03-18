@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { statusChanged } from "../Redux/Filters/action.filters";
+import { colorChanged, statusChanged } from "../Redux/Filters/action.filters";
 
 // todos formatter
 const numebrOfTodos = (no_of_todos) => {
@@ -22,8 +22,18 @@ const Footer = () => {
   const filters = useSelector((state) => state.filters);
   const todosRemaining = todos.filter((todo) => !todo.completed).length;
 
+  // filter status chalge function
   const handleStatusChange = (status) => {
     dispatch(statusChanged(status));
+  };
+
+  // colre change function
+  const handleColorChange = (color) => {
+    if (filters.colors.includes(color)) {
+      dispatch(colorChanged(color, "removed"));
+    } else {
+      dispatch(colorChanged(color, "added"));
+    }
   };
 
   return (
@@ -35,21 +45,27 @@ const Footer = () => {
       <ul className="flex space-x-1 items-center text-xs">
         <li
           onClick={() => handleStatusChange("All")}
-          className={`cursor-pointer ${filters.status === "All" && 'font-bold'} `}
+          className={`cursor-pointer ${
+            filters.status === "All" && "font-bold"
+          } `}
         >
           All
         </li>
         <li>|</li>
         <li
           onClick={() => handleStatusChange("Incomplete")}
-          className={`cursor-pointer ${filters.status === "Incomplete" && 'font-bold'} `}
+          className={`cursor-pointer ${
+            filters.status === "Incomplete" && "font-bold"
+          } `}
         >
           Incomplete
         </li>
         <li>|</li>
         <li
           onClick={() => handleStatusChange("Complete")}
-          className={`cursor-pointer ${filters.status === "Complete" && 'font-bold'} `}
+          className={`cursor-pointer ${
+            filters.status === "Complete" && "font-bold"
+          } `}
         >
           Complete
         </li>
@@ -57,9 +73,18 @@ const Footer = () => {
         <li></li>
 
         {/* color */}
-        <li className="h-3 w-3 border-2 border-green-500 md:hover:bg-green-500 rounded-full cursor-pointer bg-green-500"></li>
-        <li className="h-3 w-3 border-2 border-red-500 md:hover:bg-red-500 rounded-full cursor-pointer"></li>
-        <li className="h-3 w-3 border-2 border-yellow-500 md:hover:bg-yellow-500 rounded-full cursor-pointer"></li>
+        <li
+          onClick={() => handleColorChange("green")}
+          className={`h-3 w-3 border-2 border-green-500 rounded-full cursor-pointer ${filters.colors.includes('green') && 'bg-green-500'}`}
+        ></li>
+        <li
+          onClick={() => handleColorChange("red")}
+          className={`h-3 w-3 border-2 border-red-500 rounded-full cursor-pointer ${filters.colors.includes('red') && 'bg-red-500'}`}
+        ></li>
+        <li
+          onClick={() => handleColorChange("yellow")}
+          className={`h-3 w-3 border-2 border-yellow-500 rounded-full cursor-pointer ${filters.colors.includes('yellow') && 'bg-yellow-500'}`}
+        ></li>
       </ul>
     </div>
   );
