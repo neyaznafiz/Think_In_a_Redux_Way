@@ -1,5 +1,3 @@
-[![Youtube][youtube-shield]][youtube-url]
-[![Facebook][facebook-shield]][facebook-group-url]
 
 <!-- PROJECT LOGO -->
 <br />
